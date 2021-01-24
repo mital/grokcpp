@@ -110,9 +110,6 @@ for(const auto & v : values) {
 ```
 
 
-## Lambdas
-
-
 ## Variadic Templates
 
 
