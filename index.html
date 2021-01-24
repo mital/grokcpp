@@ -110,6 +110,41 @@
                     
                   </li>
                 
+                  <li>
+                    <a href="#structured-binding" class="toc-h2 toc-link" data-title="">Structured binding</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#selection-statements-with-initializers" class="toc-h2 toc-link" data-title="">Selection Statements with Initializers</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#fold-expressions" class="toc-h2 toc-link" data-title="">Fold Expressions</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#class-template-deduction" class="toc-h2 toc-link" data-title="">Class template deduction</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#nested-namespaces-definition" class="toc-h2 toc-link" data-title="">Nested namespaces definition</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#pre-processor-predicate-for-header-processing" class="toc-h2 toc-link" data-title="">Pre-Processor predicate for header processing</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#string_view" class="toc-h2 toc-link" data-title="">string_view</a>
+                    
+                  </li>
+                
               </ul>
             
           </li>
@@ -160,6 +195,11 @@
                 
                   <li>
                     <a href="#smart-pointer" class="toc-h2 toc-link" data-title="">Smart Pointer</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#noexcept" class="toc-h2 toc-link" data-title="">noexcept</a>
                     
                   </li>
                 
@@ -216,9 +256,11 @@
       
         <ul class="toc-footer">
           
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li>References</li>
           
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://en.cppreference.com/w/'>cppreference.com</a></li>
+          
+            <li><a href='https://www.cplusplus.com/reference/'>cplusplus.com</a></li>
           
         </ul>
       
@@ -226,9 +268,18 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
-<p>+Welcome to the Grok C++</p>
-<p>This is my personal notes for understanding various advanced features of C++ which are introduced in different versions of C++ (C++11, c++14, c++17, c++20)</p>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V9Q63R5C6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7V9Q63R5C6');
+</script>
+<h1 id="introduction">Introduction</h1>
+<p>Welcome to the Grok C++</p>
+<p>This is my personal excerpt for understanding advanced features of C++ which are introduced in different versions of C++ (C++11, c++14, c++17, c++20)</p>
 <p>So let’s get started with this</p>
 <h1 id="c%2B%2B-20-features">C++ 20 Features</h1>
 <p>Following were newly introduced features in c++20.</p>
@@ -236,25 +287,180 @@
 <p>Following were newly introduced features in c++17.</p>
 <h2 id="constexpr">constexpr</h2>
 <ul>
-<li>constexpr was introduced in C++11 with limited features but over the later revisions of C++, it has been proven as really useful feature.</li>
-<li>Let’s go through the history of constexpr evolution in C++</li>
+<li>
+<p>constexpr was introduced in C++11 with limited features but over the later revisions of C++, it has been proven as really useful feature.</p>
+</li>
+<li>
+<p>Let’s go through the history of constexpr evolution in C++</p>
+</li>
+<li>
+<p>Const Expr Lambdas</p>
+</li>
 </ul>
+<h2 id="structured-binding">Structured binding</h2>
+<h2 id="selection-statements-with-initializers">Selection Statements with Initializers</h2>
+<h2 id="fold-expressions">Fold Expressions</h2>
+<h2 id="class-template-deduction">Class template deduction</h2>
+<h2 id="nested-namespaces-definition">Nested namespaces definition</h2>
+<h2 id="pre-processor-predicate-for-header-processing">Pre-Processor predicate for header processing</h2>
+<h2 id="string_view">string_view</h2>
 <h1 id="c%2B%2B-14-features">C++ 14 Features</h1>
 <p>Following were newly introduced features in c++14.
 Major part of C++14 conpraises of bugfixes in c++11.</p>
 <h2 id="auto-return-type-deduction">auto return type deduction</h2>
 <h2 id="lambda">Lambda</h2>
+<h3 id="what-is-lambda-functions">What is Lambda functions</h3>
+<pre><code class="language-cpp">&gt; demonstrate lambda params
+
+#include &lt;iostream&gt;
+
+int main()
+{
+    auto addFunc = [](int a, int b) -&gt; int {
+        return a + b;
+    };
+
+    std::cout &lt;&lt; &quot;5 + 6 = &quot; &lt;&lt; addFunc(5, 6) &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
 <ul>
-<li>Lambdas are introduced in C++11.</li>
+<li>Lambdas are unnamed function objects.</li>
+<li>They are introduced in C++11. <a href="https://en.cppreference.com/w/cpp/language/lambda">cppreference Lambda Expressions</a></li>
+<li>In the above code snippet, addFunc is a lambda function which takes two parameters a &amp; b and returns their sum.</li>
 </ul>
-<p>C++14 added following capabilities in lambda</p>
+<h3 id="captures-and-params">captures and params</h3>
+<pre><code class="language-cpp">
+&gt; demonstrate lambda captures
+
+#include &lt;iostream&gt;
+
+int main()
+{
+    int fixedValue = 20;
+    // fixedValue as captures by value
+    /*auto addFunc = [fixedValue](int a, int b) -&gt; int {
+    	fixedValue--;
+        return a + b + fixedValue;
+    };*/
+
+    // fixedValue as captures by reference
+    auto addFunc = [&amp;fixedValue](int a, int b) -&gt; int {
+    	fixedValue--;
+        return a + b + fixedValue;
+    };
+
+    std::cout &lt;&lt; &quot;5 + 6 + fixedValue(&quot; &lt;&lt; fixedValue &lt;&lt; &quot;) = &quot; &lt;&lt; addFunc(5, 6) &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;Updated fixedValue: &quot; &lt;&lt; fixedValue &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
 <ul>
-<li>Generic, Generalize Capture Expression</li>
+<li>In the above snippet, a and b are the parameters of the lambda and we are specifying return type of the lambda with <code>-&gt; int</code>.</li>
+<li>modifying the above code, we now want to add a fixedValue which always gets added when we call addFunc.</li>
+<li>here the fixedValue is passed in <em>captures</em> section of the lambda and its value would be available within the lambda.</li>
+<li>we can pass the captures by value or by reference.</li>
+<li>In the above example the commeted definition of addFunc takes fixedValue variable by value hence any changes in the same will not be reflected in main() variable.</li>
+<li>If you execute the above code, you can verify that the fixedValue is updated in the main function.</li>
+<li>Capture all main() variables by value <code>[=](){}</code></li>
+<li>Capture all main() variables by reference <code>[&amp;](){}</code></li>
+<li>Capture all main() variables by reference except fixedValue by value<code>[&amp;, fixedValue](){}</code></li>
+<li>Capture all main() variables by value except fixedValue by reference<code>[=, &amp;fixedValue](){}</code></li>
+<li>Capture custom variable derived from fixedValue <code>[newFixedValue{fixedValue*10}](){}</code></li>
+</ul>
+<h3 id="lambda-generics-and-generalized-lambda-expressions-(added-with-c%2B%2B14)">lambda Generics and Generalized lambda expressions (Added with C++14)</h3>
+<pre><code class="language-cpp">
+&gt; lambda Generics and Generalized lambda expressions
+
+#include &lt;iostream&gt;
+
+int getFixedValue(int i) {
+    int fixedValue = 20;
+    return i + fixedValue;
+}
+
+int main()
+{
+    
+    // Generics lambda
+    auto glambda = [] (auto a, auto b) { return a + b; };
+    std::cout &lt;&lt; &quot;5 + 6 = &quot; &lt;&lt; glambda(5, 6) &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;5.50 + 6.60 = &quot; &lt;&lt; glambda(5.50, 6.60) &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;432543535 +  432543535 = &quot; &lt;&lt; glambda(432543535, 432543535) &lt;&lt; std::endl;
+    
+    // Generalized lambda expression  
+    int fv = 10;
+    const auto addFunc = [fixedValue = getFixedValue(fv)](int a, int b) -&gt; int {
+        return a + b + fixedValue;
+    };
+
+    std::cout &lt;&lt; &quot;5 + 6 + getFixedValue(&quot; &lt;&lt; fv &lt;&lt; &quot;) = &quot; &lt;&lt; addFunc(5, 6) &lt;&lt; std::endl;
+
+    // Generalized lambda expression with another lambda
+    const auto addFuncWithLambdaEmbedded = [fixedValue = [fv]() {return 20 + fv;}() ](int a, int b) -&gt; int {
+        return a + b + fixedValue;
+    };
+
+    std::cout &lt;&lt; &quot;5 + 6 + addFuncWithLambdaEmbedded[fv] = &quot; &lt;&lt; addFuncWithLambdaEmbedded(5, 6) &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<ul>
+<li>With C++14 lambda expression also support Generics.</li>
+<li>e.g. <code>auto glambda = [] (auto a, auto b) { return a + b; };</code></li>
+<li>The above <code>glambda</code> is a generics lambda which can be used for any data type.</li>
+<li>The lambda expression can take custom values derived from other methods like <code>getFixedValue</code>.</li>
+<li>The <code>getFixedValue</code> can also be replaced by another lambda as shown in the example.</li>
 </ul>
 <h2 id="std%3A%3Amake_unique">std::make_unique</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+struct Dimentions
+{
+    int x, y, z;
+
+    Dimentions(int x, int y, int z) : x(x), y(y), z(z) { }
+    Dimentions() : Dimentions(0, 0, 0) { }
+    friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, Dimentions&amp; v) {
+        return os &lt;&lt; '{' &lt;&lt; &quot;x:&quot; &lt;&lt; v.x &lt;&lt; &quot; y:&quot; &lt;&lt; v.y &lt;&lt; &quot; z:&quot; &lt;&lt; v.z  &lt;&lt; '}';
+    }
+};
+
+auto getDefaultDimentions() {
+    return std::make_unique&lt;Dimentions&gt;();
+}
+
+auto getDimentions(int a, int b, int c) {
+    return std::make_unique&lt;Dimentions&gt;(a, b, c);
+}
+
+int main()
+{
+    // default constructor.
+    std::unique_ptr&lt;Dimentions&gt; v1 = getDefaultDimentions();
+    // Use the constructor that matches these arguments
+    std::unique_ptr&lt;Dimentions&gt; v2 = getDimentions(0, 1, 2);
+    // Create a unique_ptr to an array of 5 elements
+    std::unique_ptr&lt;Dimentions[]&gt; v3 = std::make_unique&lt;Dimentions[]&gt;(5);
+
+    std::cout &lt;&lt; &quot;make_unique&lt;Dimentions&gt;():      &quot; &lt;&lt; *v1 &lt;&lt; std::endl
+              &lt;&lt; &quot;make_unique&lt;Dimentions&gt;(0,1,2): &quot; &lt;&lt; *v2 &lt;&lt; std::endl
+              &lt;&lt; &quot;make_unique&lt;Dimentions[]&gt;(5):   &quot; &lt;&lt; std::endl;
+    for (int i = 0; i &lt; 5; i++) {
+        std::cout &lt;&lt; &quot;     &quot; &lt;&lt; v3[i] &lt;&lt; '\t';
+    }
+    std::cout &lt;&lt; std::endl;
+}
+</code></pre>
 <ul>
 <li>std::make_shared was also introduced in C++11. along with shared_ptr.</li>
 <li>However for instantiating unique_ptr, the std::make_unique was introduced in C++14.</li>
+<li>From C++14 onwards, we actually can replace all the <code>new</code> and <code>delete</code> operations with <code>std::unique_ptr</code>.</li>
+<li>As shown in the example above, we can have auto type deductions on return values of functions and can safely use <code>std::make_unique</code> without making extra copies of the same object.</li>
 </ul>
 <h1 id="c%2B%2B-11-features">C++ 11 Features</h1>
 <p>Following were newly introduced features in c++11.</p>
@@ -347,6 +553,7 @@ int main()
 <li><code>auto_ptr</code> is deprecated</li>
 <li><code>shared_ptr</code>, <code>weak_ptr</code> and <code>unique_ptr</code> is introduced</li>
 </ul>
+<h2 id="noexcept">noexcept</h2>
 <h3 id="difference-between-auto_ptr-and-unique_ptr">Difference between auto_ptr and unique_ptr</h3>
 <h3 id="shared_ptr-and-weak_ptr">shared_ptr and weak_ptr</h3>
 <h2 id="ranged-for-loops">Ranged For loops</h2>
