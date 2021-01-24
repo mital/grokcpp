@@ -50,7 +50,7 @@
 
   </head>
 
-  <body data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body data-languages="[&quot;cpp&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -63,19 +63,7 @@
         <div class="lang-selector">
           
             
-              <a href="#" data-language-name="shell">shell</a>
-            
-          
-            
-              <a href="#" data-language-name="ruby">ruby</a>
-            
-          
-            
-              <a href="#" data-language-name="python">python</a>
-            
-          
-            
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="cpp">cpp</a>
             
           
         </div>
@@ -90,6 +78,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
 
       <div id="toc" class="toc-list-h1">
 	  	<ul class="toc-list-h1">
@@ -100,27 +96,17 @@
           </li>
         
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#c%2B%2B-20-features" class="toc-h1 toc-link" data-title="C++ 20 Features">C++ 20 Features</a>
             
           </li>
         
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#c%2B%2B-17-features" class="toc-h1 toc-link" data-title="C++ 17 Features">C++ 17 Features</a>
             
               <ul class="toc-list-h2">
                 
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="">Get All Kittens</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="">Get a Specific Kitten</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="">Delete a Specific Kitten</a>
+                    <a href="#constexpr" class="toc-h2 toc-link" data-title="">constexpr</a>
                     
                   </li>
                 
@@ -129,7 +115,99 @@
           </li>
         
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#c%2B%2B-14-features" class="toc-h1 toc-link" data-title="C++ 14 Features">C++ 14 Features</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#auto-return-type-deduction" class="toc-h2 toc-link" data-title="">auto return type deduction</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#lambda" class="toc-h2 toc-link" data-title="">Lambda</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#std%3A%3Amake_unique" class="toc-h2 toc-link" data-title="">std::make_unique</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#c%2B%2B-11-features" class="toc-h1 toc-link" data-title="C++ 11 Features">C++ 11 Features</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#r-value-reference" class="toc-h2 toc-link" data-title="">r-value reference</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#move-semantics" class="toc-h2 toc-link" data-title="">Move Semantics</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#automatic-type-deduction-and-decltype" class="toc-h2 toc-link" data-title="">Automatic type deduction and decltype</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#smart-pointer" class="toc-h2 toc-link" data-title="">Smart Pointer</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#ranged-for-loops" class="toc-h2 toc-link" data-title="">Ranged For loops</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#variadic-templates" class="toc-h2 toc-link" data-title="">Variadic Templates</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#stl-addition-of-new-templates" class="toc-h2 toc-link" data-title="">STL Addition of new templates</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#new-c%2B%2B-algorithms" class="toc-h2 toc-link" data-title="">new C++ Algorithms</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#nullptr" class="toc-h2 toc-link" data-title="">nullptr</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#c%2B%2B-techniques" class="toc-h1 toc-link" data-title="C++ Techniques">C++ Techniques</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#raii-(resource-acquisition-is-initialization)" class="toc-h2 toc-link" data-title="">RAII (Resource Acquisition Is Initialization)</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#template-meta-programming" class="toc-h2 toc-link" data-title="">Template Meta Programming</a>
+                    
+                  </li>
+                
+              </ul>
             
           </li>
         
@@ -149,178 +227,155 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id="introduction">Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API’s documentation.</p>
-<h1 id="authentication">Authentication</h1>
+<p>+Welcome to the Grok C++</p>
+<p>This is my personal notes for understanding various advanced features of C++ which are introduced in different versions of C++ (C++11, c++14, c++17, c++20)</p>
+<p>So let’s get started with this</p>
+<h1 id="c%2B%2B-20-features">C++ 20 Features</h1>
+<p>Following were newly introduced features in c++20.</p>
+<h1 id="c%2B%2B-17-features">C++ 17 Features</h1>
+<p>Following were newly introduced features in c++17.</p>
+<h2 id="constexpr">constexpr</h2>
+<ul>
+<li>constexpr was introduced in C++11 with limited features but over the later revisions of C++, it has been proven as really useful feature.</li>
+<li>Let’s go through the history of constexpr evolution in C++</li>
+</ul>
+<h1 id="c%2B%2B-14-features">C++ 14 Features</h1>
+<p>Following were newly introduced features in c++14.
+Major part of C++14 conpraises of bugfixes in c++11.</p>
+<h2 id="auto-return-type-deduction">auto return type deduction</h2>
+<h2 id="lambda">Lambda</h2>
+<ul>
+<li>Lambdas are introduced in C++11.</li>
+</ul>
+<p>C++14 added following capabilities in lambda</p>
+<ul>
+<li>Generic, Generalize Capture Expression</li>
+</ul>
+<h2 id="std%3A%3Amake_unique">std::make_unique</h2>
+<ul>
+<li>std::make_shared was also introduced in C++11. along with shared_ptr.</li>
+<li>However for instantiating unique_ptr, the std::make_unique was introduced in C++14.</li>
+</ul>
+<h1 id="c%2B%2B-11-features">C++ 11 Features</h1>
+<p>Following were newly introduced features in c++11.</p>
+<h2 id="r-value-reference">r-value reference</h2>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'kittn'</span><br><br>api <span class="token operator">=</span> <span class="token constant">Kittn</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">APIClient</span><span class="token punctuation">.</span>authorize<span class="token operator">!</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span></code></pre>
-<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> kittn<br><br>api <span class="token operator">=</span> kittn<span class="token punctuation">.</span>authorize<span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span></code></pre>
-<pre class="language-shell"><code class="language-shell"><span class="token comment"># With shell, you can just pass the correct header with each request</span><br><span class="token function">curl</span> <span class="token string">"api_endpoint_here"</span><br>  -H <span class="token string">"Authorization: meowmeowmeow"</span></code></pre>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> kittn <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'kittn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token keyword">let</span> api <span class="token operator">=</span> kittn<span class="token punctuation">.</span><span class="token function">authorize</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-<p><code>Authorization: meowmeowmeow</code></p>
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id="kittens">Kittens</h1>
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'kittn'</span><br><br>api <span class="token operator">=</span> <span class="token constant">Kittn</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">APIClient</span><span class="token punctuation">.</span>authorize<span class="token operator">!</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><br>api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span>get</code></pre>
-<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> kittn<br><br>api <span class="token operator">=</span> kittn<span class="token punctuation">.</span>authorize<span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><br>api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
-<pre class="language-shell"><code class="language-shell"><span class="token function">curl</span> <span class="token string">"http://example.com/api/kittens"</span><br>  -H <span class="token string">"Authorization: meowmeowmeow"</span></code></pre>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> kittn <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'kittn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token keyword">let</span> api <span class="token operator">=</span> kittn<span class="token punctuation">.</span><span class="token function">authorize</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> kittens <span class="token operator">=</span> api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Fluffums"</span><span class="token punctuation">,</span><br>    <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"calico"</span><span class="token punctuation">,</span><br>    <span class="token property">"fluffiness"</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span><br>    <span class="token property">"cuteness"</span><span class="token operator">:</span> <span class="token number">7</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Max"</span><span class="token punctuation">,</span><br>    <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"unknown"</span><span class="token punctuation">,</span><br>    <span class="token property">"fluffiness"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span><br>    <span class="token property">"cuteness"</span><span class="token operator">:</span> <span class="token number">10</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id="query-parameters">Query Parameters</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody>
-</table>
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'kittn'</span><br><br>api <span class="token operator">=</span> <span class="token constant">Kittn</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">APIClient</span><span class="token punctuation">.</span>authorize<span class="token operator">!</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><br>api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre>
-<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> kittn<br><br>api <span class="token operator">=</span> kittn<span class="token punctuation">.</span>authorize<span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><br>api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre>
-<pre class="language-shell"><code class="language-shell"><span class="token function">curl</span> <span class="token string">"http://example.com/api/kittens/2"</span><br>  -H <span class="token string">"Authorization: meowmeowmeow"</span></code></pre>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> kittn <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'kittn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token keyword">let</span> api <span class="token operator">=</span> kittn<span class="token punctuation">.</span><span class="token function">authorize</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> max <span class="token operator">=</span> api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Max"</span><span class="token punctuation">,</span><br>  <span class="token property">"breed"</span><span class="token operator">:</span> <span class="token string">"unknown"</span><span class="token punctuation">,</span><br>  <span class="token property">"fluffiness"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span><br>  <span class="token property">"cuteness"</span><span class="token operator">:</span> <span class="token number">10</span><br><span class="token punctuation">}</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id="http-request-1">HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id="url-parameters">URL Parameters</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody>
-</table>
-<h2 id="delete-a-specific-kitten">Delete a Specific Kitten</h2>
-<pre class="language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'kittn'</span><br><br>api <span class="token operator">=</span> <span class="token constant">Kittn</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">APIClient</span><span class="token punctuation">.</span>authorize<span class="token operator">!</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><br>api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span>delete<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre>
-<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> kittn<br><br>api <span class="token operator">=</span> kittn<span class="token punctuation">.</span>authorize<span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><br>api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span>delete<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span></code></pre>
-<pre class="language-shell"><code class="language-shell"><span class="token function">curl</span> <span class="token string">"http://example.com/api/kittens/2"</span><br>  -X DELETE<br>  -H <span class="token string">"Authorization: meowmeowmeow"</span></code></pre>
-<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> kittn <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'kittn'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token keyword">let</span> api <span class="token operator">=</span> kittn<span class="token punctuation">.</span><span class="token function">authorize</span><span class="token punctuation">(</span><span class="token string">'meowmeowmeow'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">let</span> max <span class="token operator">=</span> api<span class="token punctuation">.</span>kittens<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span><br>  <span class="token property">"deleted"</span> <span class="token operator">:</span> <span class="token string">":("</span><br><span class="token punctuation">}</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id="http-request-2">HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id="url-parameters-1">URL Parameters</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody>
-</table>
-<h1 id="errors">Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-<p>The Kittn API uses the following error codes:</p>
-<table>
-<thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>400</td>
-<td>Bad Request – Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized – Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden – The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found – The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed – You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable – You requested a format that isn’t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone – The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I’m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests – You’re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error – We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable – We’re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody>
-</table>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+	int x{7};
+
+	// l-value references
+	int &amp;lvalueRef{ x };
+	const int &amp;constLvalueRef{ x };
+	const int &amp;constLvalueRefOfLiteral{ 5 };
+
+	// r-value references
+	int &amp;&amp;rvalueRef{ 5 }; // F
+	const int &amp;&amp;constRvalueRef{ 5 }; // H
+
+	return 0;
+}
+</code></pre>
+<ul>
+<li>prior to C++11 l-values, r-values and only one type of reference existed which is called <em>reference</em> and which is of type l-values reference.</li>
+<li>
+<ul>
+<li>l-values are the values which are on left side of an assignment expression. Originally there was only one type of l-values but after introduction of <code>const</code> keyword, l-values split into two categories - modifiable and non-modifiable l-values.</li>
+</ul>
+</li>
+<li>r-values are everything which is not l-values. e.g. literals (3, “three” etc.) , temporary values (a + 5, x + y etc.), anonymous objects (new MyClass(“myClass”) etc. ).</li>
+<li>l-values and r-values are properties of expressions. Every expression in C++ have two properties, <em>type</em> and <em>value category</em>. Type is used for type checking and value category is used for syntax checking.</li>
+<li>C++11 adds r-value reference is created using ‘&amp;&amp;’ whereas the l-value reference (formally ‘reference’) is created using ‘&amp;’.</li>
+</ul>
+<p>The above code is</p>
+<h2 id="move-semantics">Move Semantics</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+std::vector&lt;int&gt; processValues(const std::vector&lt;int&gt;&amp; values)
+{
+    std::vector&lt;int&gt; newValues;
+    newValues.reserve(values.size());
+    for (auto itr = values.begin(); itr != values.end(); ++itr )
+    {
+        new_values.push_back( 2 * *itr );
+    }
+    return new_values;
+}
+
+int main()
+{
+    std::vector&lt;int&gt; values;
+    for ( int i = 0; i &lt; 100; i++ )
+    {
+        values.push_back(i);
+    }
+    values = processValues(values);
+}
+</code></pre>
+<h2 id="automatic-type-deduction-and-decltype">Automatic type deduction and decltype</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+
+int main()
+{
+    // auto variables
+
+    auto c = 'v'; // character
+    auto d = 55; // integer
+    auto f = 44.66; // float
+
+    std::vector&lt;int&gt; values = {1, 2, 3, 4, 5};
+
+    // type of the object is verbose. e.g.
+    // std::vector&lt;int&gt;::const_iterator iter = values.begin();
+    auto iter = values.begin();
+
+    // decltype
+    typedef decltype(values.begin()) VITER;
+    VITER iter2;
+    return 0;
+}
+
+</code></pre>
+<h2 id="smart-pointer">Smart Pointer</h2>
+<ul>
+<li><code>auto_ptr</code> is deprecated</li>
+<li><code>shared_ptr</code>, <code>weak_ptr</code> and <code>unique_ptr</code> is introduced</li>
+</ul>
+<h3 id="difference-between-auto_ptr-and-unique_ptr">Difference between auto_ptr and unique_ptr</h3>
+<h3 id="shared_ptr-and-weak_ptr">shared_ptr and weak_ptr</h3>
+<h2 id="ranged-for-loops">Ranged For loops</h2>
+<pre><code class="language-cpp">std::vector&lt;int&gt; values;
+for(const auto &amp; v : values) {
+    // perform operation using the value
+}
+</code></pre>
+<h2 id="variadic-templates">Variadic Templates</h2>
+<h2 id="stl-addition-of-new-templates">STL Addition of new templates</h2>
+<ul>
+<li>unordered_map</li>
+<li>unordered_set</li>
+</ul>
+<p>etc.</p>
+<h2 id="new-c%2B%2B-algorithms">new C++ Algorithms</h2>
+<ul>
+<li><code>std::all_of</code></li>
+<li><code>std::any_of</code></li>
+<li><code>std::none_of</code></li>
+</ul>
+<h2 id="nullptr">nullptr</h2>
+<p>In C++11, nullptr is introduce to replace the NULL macro. (Literal 0)</p>
+<h1 id="c%2B%2B-techniques">C++ Techniques</h1>
+<h2 id="raii-(resource-acquisition-is-initialization)">RAII (Resource Acquisition Is Initialization)</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/language/raii">cppreference RAII</a></li>
+</ul>
+<h2 id="template-meta-programming">Template Meta Programming</h2>
 
       </div>
       <div class="dark-box">
@@ -328,19 +383,7 @@ This error section is stored in a separate file in <code>includes/errors.md</cod
           <div class="lang-selector">
             
               
-                <a href="#" data-language-name="shell">shell</a>
-              
-            
-              
-                <a href="#" data-language-name="ruby">ruby</a>
-              
-            
-              
-                <a href="#" data-language-name="python">python</a>
-              
-            
-              
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="cpp">cpp</a>
               
             
           </div>
