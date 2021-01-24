@@ -94,6 +94,8 @@ int main()
 * `auto_ptr` is deprecated
 * `shared_ptr`, `weak_ptr` and `unique_ptr` is introduced
 
+## noexcept
+
 ### Difference between auto_ptr and unique_ptr
 
 ### shared_ptr and weak_ptr
