@@ -10,7 +10,7 @@ Major part of C++14 conpraises of bugfixes in c++11.
 ### What is Lambda functions
 
 ```cpp
-> demonstrate lambda params
+// demonstrate lambda params
 
 #include <iostream>
 
@@ -34,7 +34,7 @@ int main()
 
 ```cpp
 
-> demonstrate lambda captures
+// demonstrate lambda captures
 
 #include <iostream>
 
@@ -76,7 +76,7 @@ int main()
 
 ```cpp
 
-> lambda Generics and Generalized lambda expressions
+// lambda Generics and Generalized lambda expressions
 
 #include <iostream>
 
