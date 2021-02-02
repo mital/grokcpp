@@ -106,6 +106,11 @@
               <ul class="toc-list-h2">
                 
                   <li>
+                    <a href="#ctad-(class-template-argument-deduction)" class="toc-h2 toc-link" data-title="">CTAD (Class template argument deduction)</a>
+                    
+                  </li>
+                
+                  <li>
                     <a href="#constexpr" class="toc-h2 toc-link" data-title="">constexpr</a>
                     
                   </li>
@@ -194,6 +199,11 @@
                   </li>
                 
                   <li>
+                    <a href="#std%3A%3Adecay%2C-std%3A%3Aforward%2C-std%3A%3Amove" class="toc-h2 toc-link" data-title="">std::decay, std::forward, std::move</a>
+                    
+                  </li>
+                
+                  <li>
                     <a href="#smart-pointer" class="toc-h2 toc-link" data-title="">Smart Pointer</a>
                     
                   </li>
@@ -204,12 +214,22 @@
                   </li>
                 
                   <li>
-                    <a href="#ranged-for-loops" class="toc-h2 toc-link" data-title="">Ranged For loops</a>
+                    <a href="#difference-between-auto_ptr-and-unique_ptr" class="toc-h2 toc-link" data-title="">Difference between auto_ptr and unique_ptr</a>
                     
                   </li>
                 
                   <li>
-                    <a href="#variadic-templates" class="toc-h2 toc-link" data-title="">Variadic Templates</a>
+                    <a href="#shared_ptr-and-weak_ptr" class="toc-h2 toc-link" data-title="">shared_ptr and weak_ptr</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#guaranteed-copy-and-move-elision" class="toc-h2 toc-link" data-title="">Guaranteed Copy and Move Elision</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#ranged-for-loops" class="toc-h2 toc-link" data-title="">Ranged For loops</a>
                     
                   </li>
                 
@@ -228,6 +248,16 @@
                     
                   </li>
                 
+                  <li>
+                    <a href="#variadic-templates" class="toc-h2 toc-link" data-title="">Variadic Templates</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#template-specialization" class="toc-h2 toc-link" data-title="">Template Specialization</a>
+                    
+                  </li>
+                
               </ul>
             
           </li>
@@ -239,6 +269,31 @@
                 
                   <li>
                     <a href="#raii-(resource-acquisition-is-initialization)" class="toc-h2 toc-link" data-title="">RAII (Resource Acquisition Is Initialization)</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#crtp-(curiously-recurring-template-pattern)" class="toc-h2 toc-link" data-title="">CRTP (Curiously Recurring Template Pattern)</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#snife" class="toc-h2 toc-link" data-title="">SNIFE</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#rvo-(return-value-optimization)" class="toc-h2 toc-link" data-title="">RVO (Return Value Optimization)</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#nrvo-(named-return-value-optimization)---not-mandatory" class="toc-h2 toc-link" data-title="">NRVO (Named return value optimization) - not mandatory</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#templates" class="toc-h2 toc-link" data-title="">Templates</a>
                     
                   </li>
                 
@@ -285,17 +340,178 @@
 <p>Following were newly introduced features in c++20.</p>
 <h1 id="c%2B%2B-17-features">C++ 17 Features</h1>
 <p>Following were newly introduced features in c++17.</p>
+<h2 id="ctad-(class-template-argument-deduction)">CTAD (Class template argument deduction)</h2>
+<ul>
+<li>Reference: <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">CTAD</a></li>
+</ul>
 <h2 id="constexpr">constexpr</h2>
 <ul>
+<li>constexpr (constant expression) specifies that it is possible to evaluate value of the function or variable at compile time.</li>
+<li>using constexpr, we will be able to achieve runtime effficiency by doing computation at compile time.</li>
+<li>constexpr can be applied to: variables, functions and objects</li>
+</ul>
+<h3 id="constexpr-variables">constexpr variables</h3>
+<pre><code class="language-cpp">// both of below variables are evaluated at compile time
+constexpr int a = 55;
+constexpr int b = a + 50;
+</code></pre>
+<ul>
+<li>as shown in the above example, constexpr variable’s value can be computed at compile time.</li>
+</ul>
+<h3 id="constexpr-functions">constexpr functions</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+constexpr bool is_odd(int num){
+  if(num % 2 == 0){
+    return false;
+  }
+  return true;
+}
+
+int main() {
+
+  // this is evaluated at compile time
+  const int n = 11;
+  const bool check_odd = is_odd(n);
+  std::cout &lt;&lt; std::boolalpha &lt;&lt; check_odd &lt;&lt; std::endl;
+}
+</code></pre>
+<ul>
+<li>constexpr functions are evaluated and executed at compile time.</li>
+<li>it can only call other constexpr functions</li>
+<li>its return value cannot be <code>void</code></li>
+<li>it can refer only <code>const</code> or <code>constexpr</code> variables.</li>
+<li>its return values should always be stored in <code>const</code> or <code>constexpr</code> variables.</li>
+</ul>
+<h3 id="constexpr-v%2Fs-inline-functions">constexpr v/s inline functions</h3>
+<p>Key difference:</p>
+<ul>
+<li>inline functions are expanded by compiler at compile time but still evaluated at runtime.</li>
+<li>constexpr functions are evaluated at compile time.</li>
+</ul>
+<h3 id="constexpr-objects">constexpr objects</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+class Rectangle {
+  int height;
+  int width;
+
+  public:
+  // constexpr constructor
+  constexpr Rectangle(int h, int w): height(h), width(w) {}
+
+  // constexpr method
+  constexpr int area() const {return height * width;}
+};
+
+int main() {
+    // object evaluated at compile-time
+    constexpr Rectangle r(5, 10);
+    const int area = r.area();
+    std::cout &lt;&lt; &quot;area of Rectangle is: &quot; &lt;&lt; area &lt;&lt; std::endl;
+}
+</code></pre>
+<ul>
+<li>constexpr objects are initialized at compile time</li>
+<li>all constructors must be constexpr</li>
+<li>all non-static members or subobjects must be initialized and they must have constexpr constructors.</li>
+<li>object methods also can be declared as constexpr as long as they comply with rules of constexpr functions.</li>
+<li>in the above example, Rectangle object <code>r</code> is constexpr object</li>
+<li>Rectangle class have its constructor as well as <code>area()</code> method also constexpr.</li>
+</ul>
+<h3 id="c%2B%2B11---constexpr-introduction">C++11 - constexpr introduction</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+constexpr int add(int x, int y) {
+    return x + y;
+}
+
+int main()
+{
+    const int x = add(10, 20);
+    std::cout &lt;&lt; x &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<ul>
+<li>constexpr was introduced in C++11 with limited features but over the later revisions of C++.</li>
+<li>limit of one return expression per function is allowed. This restriction is removed in C++14.</li>
+<li>constexpr function can call other constexpr functions and access only const global variables.</li>
+<li>constexpr function return values should also be stored in const expression, so if we remove <code>const</code> from <code>const int x</code> the expression <code>add(10, 20)</code> will be evaluated at runtime.</li>
+</ul>
+<h3 id="c%2B%2B14---generalized-constexpr">C++14 - generalized constexpr</h3>
+<h3 id="c%2B%2B17---constexpr-for-metaprogramming">C++17 - constexpr for metaprogramming</h3>
+<ul>
+<li>If Constexpr</li>
+<li>constexpr Lambdas</li>
+<li>stl constexpr by default</li>
+</ul>
+<h3 id="constexpr-with-constructors">constexpr with constructors</h3>
+<pre><code class="language-cpp">using namespace std;
+
+class Rectangle
+{
+    int _h, _w;
+public:
+
+    constexpr Rectangle (int h, int w) : _h(h), _w(w) {}
+
+    constexpr int area () const { return _h * _w; }
+};
+
+//  driver program to test function
+int main()
+{
+    // Below object initialized at compile time
+    constexpr Rectangle obj(10, 20);
+    cout &lt;&lt; obj.area() &lt;&lt; std::endl;
+
+    // Below object initialized at compile time
+    // If we make h and w as non const - we will get compile time error
+    const int h = 5;
+    const int w = 10;
+    constexpr Rectangle obj1(h, w);
+    cout &lt;&lt; obj1.area() &lt;&lt; std::endl;
+
+    // Below object is initialized at runtime
+    int h1 = 5;
+    int w1 = 10;
+    Rectangle obj2(h, w);
+    cout &lt;&lt; obj2.area() &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<ul>
 <li>
-<p>constexpr was introduced in C++11 with limited features but over the later revisions of C++, it has been proven as really useful feature.</p>
+<p>Reference: <a href="https://www.ibm.com/support/knowledgecenter/SSGH3R_13.1.0/com.ibm.xlcpp131.aix.doc/language_ref/constexpr_constructors.html">constexpr constructors - IBM</a></p>
 </li>
 <li>
-<p>Let’s go through the history of constexpr evolution in C++</p>
+<p>previously only expressions of built-in types could be valid constant expressions. With constexpr constructors, constructors of user defined types can also be included in valid constant expressions. The user defined class should satisfy following properties:</p>
 </li>
 <li>
-<p>Const Expr Lambdas</p>
+<p>the class should not have any virtual base class</p>
 </li>
+<li>
+<p>each parameter type is literal</p>
+</li>
+<li>
+<p>each non static data member and subobject is initialized</p>
+</li>
+<li>
+<p>all the constructors are constexpr</p>
+</li>
+<li>
+<p>in the above example, obj and obj1 are initialzed at compile time whereas obj2 will be initialized at runtime.</p>
+</li>
+<li>
+<p>if we make the h and w variables non-const, we will get compile error.</p>
+</li>
+</ul>
+<h3 id="constexpr-versus-const">constexpr versus const</h3>
+<ul>
+<li>const is used for creating const objects whose values does not get modified during runtime</li>
+<li>constexpr is actually used for optimization of the program where we try to evaluate expressions at compile time.</li>
 </ul>
 <h2 id="structured-binding">Structured binding</h2>
 <h2 id="selection-statements-with-initializers">Selection Statements with Initializers</h2>
@@ -409,11 +625,227 @@ int main()
 }
 </code></pre>
 <ul>
-<li>With C++14 lambda expression also support Generics.</li>
-<li>e.g. <code>auto glambda = [] (auto a, auto b) { return a + b; };</code></li>
-<li>The above <code>glambda</code> is a generics lambda which can be used for any data type.</li>
-<li>The lambda expression can take custom values derived from other methods like <code>getFixedValue</code>.</li>
-<li>The <code>getFixedValue</code> can also be replaced by another lambda as shown in the example.</li>
+<li>
+<p>With C++14 lambda expression also support Generics.</p>
+</li>
+<li>
+<p>e.g. <code>auto glambda = [] (auto a, auto b) { return a + b; };</code></p>
+</li>
+<li>
+<p>The above <code>glambda</code> is a generics lambda which can be used for any data type.</p>
+</li>
+<li>
+<p>The lambda expression can take custom values derived from other methods like <code>getFixedValue</code>.</p>
+</li>
+<li>
+<p>The <code>getFixedValue</code> can also be replaced by another lambda as shown in the example.</p>
+</li>
+<li>
+<p>lambda adds more code if not compiled with higher optimization flag (e.g. -O1 or -O2)</p>
+</li>
+</ul>
+<h3 id="stateful-lambda">stateful lambda</h3>
+<pre><code class="language-cpp">#include &lt;memory&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+    auto myLambda = [i = 0] () mutable {return i++; };
+    std::cout &lt;&lt; myLambda() &lt;&lt; std::endl;
+    std::cout &lt;&lt; myLambda() &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<ul>
+<li>as shown in the code above myLambda is a stateful lambda expression, it counts the number of times the lambda is invoked</li>
+</ul>
+<h3 id="fibonaci-sequence-generation-through-lambda">Fibonaci sequence generation through lambda</h3>
+<pre><code class="language-cpp">#include &lt;memory&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+    auto myFib = [i = 0, j = 1] ()  mutable {
+            i = std::exchange(j, j+i);
+            return i;
+        };
+    std::cout &lt;&lt; myFib() &lt;&lt; std::endl;
+    std::cout &lt;&lt; myFib() &lt;&lt; std::endl;
+    std::cout &lt;&lt; myFib() &lt;&lt; std::endl;
+    std::cout &lt;&lt; myFib() &lt;&lt; std::endl;
+    std::cout &lt;&lt; myFib() &lt;&lt; std::endl;
+    std::cout &lt;&lt; myFib() &lt;&lt; std::endl;
+    std::cout &lt;&lt; myFib() &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<ul>
+<li>The above code is a mutable lambda expression which is able to generate the fibonacci sequence all at compile time.</li>
+</ul>
+<h3 id="inheriting-from-lambda-(combining-two-lambdas)">inheriting from lambda (Combining two lambdas)</h3>
+<pre><code class="language-cpp">#include &lt;memory&gt;
+#include &lt;iostream&gt;
+
+template &lt;typename L1, typename L2&gt;
+struct S: L1, L2 {
+    
+    S(L1 l1, L2 l2) : L1(std::move(l1)), L2(std::move(l2)) {}
+    using L1::operator();
+    using L2::operator();
+};
+
+int main()
+{
+    auto l = []() { return 4; };
+    auto l2 = [](int i) { return i * 10; };
+    
+    auto combined = S(l, l2);
+    std::cout &lt;&lt; combined() &lt;&lt; std::endl;
+    
+    return 0;
+}
+</code></pre>
+<ul>
+<li>as shown in the above code, we can actualy combine two lambada by creating a template struct which inherits from both the lambadas</li>
+<li>C++14 would have required a wrapper method <code>make_combined</code> which is no longer required with C++17 onwards.</li>
+</ul>
+<h3 id="usage-of-combining-multiple-lambdas">Usage of combining multiple lambdas</h3>
+<pre><code class="language-cpp">
+// Compile at https://godbolt.org/ with extra flags: -O3 -std=c++1z -Wall -Wextra
+
+#include &lt;memory&gt;
+#include &lt;variant&gt;
+#include &lt;array&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+template &lt;typename ... A&gt;
+struct Merged : A...
+{
+    template &lt;typename ... T&gt;
+    Merged(T &amp;&amp; ... t) : A(std::forward&lt;T&gt;(t))...
+    {
+    }
+
+    using A::operator()...;
+};
+
+template &lt;typename ... T&gt;
+Merged(T...) -&gt; Merged&lt;std::decay_t&lt;T&gt;...&gt;;
+
+
+int main()
+{
+    std::array&lt;std::variant&lt;double, int, char, std::string&gt;, 2&gt; a{3.2, 2};
+    
+    int intTotal = 0;
+    double doubleTotal = 0;
+    
+    Merged merged{[&amp;intTotal](const int i) { intTotal += i; },
+                    [&amp;doubleTotal](const double d) { doubleTotal += d; } };
+                    
+    std::for_each(begin(a), end(a),
+        [&amp;merged](const auto &amp;v) {std::visit(merged, v);});
+    
+
+    return intTotal;
+}
+</code></pre>
+<ul>
+<li>As shown in above code, we can use merged class to combine different type of variant objects and do operations on top of them.</li>
+</ul>
+<h3 id="generic-lambda">Generic Lambda</h3>
+<pre><code class="language-cpp">#include &lt;memory&gt;
+#include &lt;variant&gt;
+#include &lt;array&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+int main()
+{
+    std::array&lt;std::variant&lt;double, int&gt;, 2&gt; a{3.2, 2};
+    
+    int intTotal = 0;
+    double doubleTotal = 0;
+    std::common_type_t&lt;decltype(intTotal), decltype(doubleTotal)&gt; grandTotal = 0;
+    
+    auto generic_merged = [&amp;intTotal, &amp;doubleTotal, &amp;grandTotal](const auto v) {
+
+        grandTotal += v;
+
+        if constexpr (std::is_same&lt;double, decltype(v)&gt;{}) {
+            doubleTotal += v;
+        } else {
+            intTotal += v;
+        }
+    };
+                    
+    std::for_each(begin(a), end(a),
+        [&amp;generic_merged](const auto &amp;v) {std::visit(generic_merged, v);});
+    
+
+    return intTotal;
+}
+</code></pre>
+<ul>
+<li>Generic Lambda support was added in C++14</li>
+<li>we can do significant optimization on the <code>Merged</code> code we have writen in previous example using generic lambda</li>
+<li>they are way more readable and easier to understand compared to inheriting multiple lambdas.</li>
+<li>we can share values across multiple types of variant whereas in previous case the only way we could do it is by passing same object reference to both the lambdas</li>
+</ul>
+<h3 id="lambdas-as-custom-comparator-on-stl-containers">Lambdas as custom comparator on stl containers</h3>
+<pre><code class="language-cpp">#include &lt;set&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+struct Person
+{
+    std::string name;
+};
+
+template &lt;typename Type, typename ... Comparator&gt;
+auto make_set(Comparator &amp;&amp; ... comparator)
+{
+    struct Compare : std::decay_t&lt;Comparator&gt;... {
+        using std::decay_t&lt;Comparator&gt;::operator()...;
+        using is_transparent = std::true_type;
+    };
+    return std::set&lt;Type, Compare&gt;{Compare{std::forward&lt;Comparator&gt;(comparator)...}};
+}
+
+int main()
+{
+    auto myset = make_set&lt;Person&gt;(
+        [](const Person&amp; lhs, const Person&amp; rhs) { return lhs.name &lt; rhs.name;},
+        [](const auto&amp; lhs, const Person&amp; rhs) { return lhs &lt; rhs.name;},
+        [](const Person&amp; lhs, const auto&amp; rhs) { return lhs.name &lt; rhs;}
+        );
+    
+    myset.count(&quot;Bob&quot;);
+
+}
+</code></pre>
+<ul>
+<li>Above is the example usage where lambdas are used as transparent comparators for std::set or alaternatively std::map</li>
+</ul>
+<h3 id="lambda-in-fold-expression">Lambda in Fold Expression</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+auto do_stuff(T ... t) {
+template &lt;typename ... T&gt;
+    return ([t]{return t;}()  + ...);
+}
+
+int main()
+{
+    return do_stuff(1, 2, 3, 4, 5);
+}
+</code></pre>
+<ul>
+<li>using lambdas inside fold expression is perfectly valid</li>
+<li>we have done variadic expansion of capturing lambda.</li>
 </ul>
 <h2 id="std%3A%3Amake_unique">std::make_unique</h2>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
@@ -499,29 +931,28 @@ int main()
 </ul>
 <p>The above code is</p>
 <h2 id="move-semantics">Move Semantics</h2>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-
-std::vector&lt;int&gt; processValues(const std::vector&lt;int&gt;&amp; values)
-{
-    std::vector&lt;int&gt; newValues;
-    newValues.reserve(values.size());
-    for (auto itr = values.begin(); itr != values.end(); ++itr )
-    {
-        new_values.push_back( 2 * *itr );
-    }
-    return new_values;
-}
-
-int main()
-{
-    std::vector&lt;int&gt; values;
-    for ( int i = 0; i &lt; 100; i++ )
-    {
-        values.push_back(i);
-    }
-    values = processValues(values);
-}
+<pre><code class="language-cpp">// Move Constructor and Move assignment operator
 </code></pre>
+<ul>
+<li>
+<p>if your class holds pointer to objects which are member variables and which takes considerable effort to construct,</p>
+</li>
+<li>
+<p>your object copy is expensive.</p>
+</li>
+<li>
+<p>many cases we create objects which are temporary in nature (e.g. return from a function or using standard library (before c++11).</p>
+</li>
+<li>
+<p>in the above scenarios the move constructor and move assignment operator would considerably improve the performance.</p>
+</li>
+<li>
+<p>we use std::move for converting any l-value to r-value and hence triggering move constructor or move assignment operator explicitly.</p>
+</li>
+<li>
+<p><a href="https://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html">R Value Reference and Move Semantics</a></p>
+</li>
+</ul>
 <h2 id="automatic-type-deduction-and-decltype">Automatic type deduction and decltype</h2>
 <pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
@@ -548,21 +979,43 @@ int main()
 }
 
 </code></pre>
+<ul>
+<li><code>decltype</code> inspects / returns the declared type of the entity or the type and value category of an expression.</li>
+</ul>
+<h2 id="std%3A%3Adecay%2C-std%3A%3Aforward%2C-std%3A%3Amove">std::decay, std::forward, std::move</h2>
+<ul>
+<li>std::decay - converts l-value to r-value, array to pointer and function to function pointer</li>
+<li>std::forward - forwards l-value as l-value and r-value as r-value</li>
+<li>std::move - converts l-value to r-value and keeps r-value as r-value</li>
+</ul>
 <h2 id="smart-pointer">Smart Pointer</h2>
 <ul>
 <li><code>auto_ptr</code> is deprecated</li>
 <li><code>shared_ptr</code>, <code>weak_ptr</code> and <code>unique_ptr</code> is introduced</li>
 </ul>
 <h2 id="noexcept">noexcept</h2>
-<h3 id="difference-between-auto_ptr-and-unique_ptr">Difference between auto_ptr and unique_ptr</h3>
-<h3 id="shared_ptr-and-weak_ptr">shared_ptr and weak_ptr</h3>
+<ul>
+<li><code>noexcept</code> performs compile time check that if the expression is declared to not throw any exceptions</li>
+</ul>
+<h2 id="difference-between-auto_ptr-and-unique_ptr">Difference between auto_ptr and unique_ptr</h2>
+<ul>
+<li>auto_ptr is a smart pointer which manages the object created / obtained via new operator and deletes the same in the destructor of auto_ptr (exclusive ownership model)</li>
+<li>copy constructor of auto_ptr will transfer the ownership of object instead of copying. because of this they can’t be used within stl</li>
+<li>std::unique_ptr is added in C++11 as replacement of auto_ptr</li>
+<li>no copy assignments, support for arrays and containers.</li>
+<li>std::unique_ptr can be moved using new std::move semantics. <code>unique_ptr&lt;MyClass&gt; ptr2 = std::move(ptr1)</code></li>
+</ul>
+<h2 id="shared_ptr-and-weak_ptr">shared_ptr and weak_ptr</h2>
+<ul>
+<li>shared_ptr uses reference counting mechanism to manage multiple references to same object.</li>
+</ul>
+<h2 id="guaranteed-copy-and-move-elision">Guaranteed Copy and Move Elision</h2>
 <h2 id="ranged-for-loops">Ranged For loops</h2>
 <pre><code class="language-cpp">std::vector&lt;int&gt; values;
 for(const auto &amp; v : values) {
     // perform operation using the value
 }
 </code></pre>
-<h2 id="variadic-templates">Variadic Templates</h2>
 <h2 id="stl-addition-of-new-templates">STL Addition of new templates</h2>
 <ul>
 <li>unordered_map</li>
@@ -577,10 +1030,351 @@ for(const auto &amp; v : values) {
 </ul>
 <h2 id="nullptr">nullptr</h2>
 <p>In C++11, nullptr is introduce to replace the NULL macro. (Literal 0)</p>
+<h2 id="variadic-templates">Variadic Templates</h2>
+<h3 id="background-and-details">Background and Details</h3>
+<pre><code class="language-cpp">// Sample Template function
+template&lt;typename... Arguments&gt;
+void SampleFunction(Arguments... parameters);
+
+// Demonstrating sizeof... operator
+template&lt;typename... Arguments&gt;
+class VariadicTemplate{
+private:
+    static const unsigned short int size = sizeof...(Arguments);
+};
+</code></pre>
+<ul>
+<li><a href="http://www.cplusplus.com/articles/EhvU7k9E/">cplusplus variadic templates</a></li>
+<li>it uses ellipsis operator (…) in different contexts</li>
+<li>C++ uses ellipsis operator (…) also in try-catch block for catching any exception thrown.</li>
+</ul>
+<h3 id="variadic-function-template">Variadic Function template</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt; 
+
+void print() {
+    std::cout &lt;&lt; &quot;I am empty function and I am called at last.&quot; &lt;&lt; std::endl;
+}
+
+template &lt;typename T, typename... Types&gt;
+void print(T t, Types... types) {
+    std::cout &lt;&lt; t &lt;&lt; std::endl;
+    if (sizeof...(types) &gt;= 1) {
+        print(types...);
+    }
+}
+
+int main()
+{
+    print(1, 2, 3.14, &quot;Pass me any number of arguments&quot;, &quot;I will print\n&quot;); 
+    return 0;
+}
+</code></pre>
+<ul>
+<li>As shown in abov example, print is a variadic function template.</li>
+<li>it can take variable number of arguments.</li>
+<li>if you remove the sizeof check the print() method without any arguments will be called at last.</li>
+</ul>
+<h3 id="variadic-templates-in-inheritance-%26-initialization-list">Variadic templates in inheritance &amp; initialization list</h3>
+<pre><code class="language-cpp">
+// variadic template in initialization list
+template&lt;typename... BaseClasses&gt;
+class VariadicTemplate : public BaseClasses...{
+public:
+    VariadicTemplate(BaseClasses&amp;&amp;... base_classes) : BaseClasses(base_classes)...{
+
+    }
+};
+</code></pre>
+<h3 id="double-ellipsis">Double ellipsis</h3>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;string&gt;
+
+template&lt; typename T &gt;
+T const &amp;printf_helper( T const &amp;x )
+    { return x; }
+
+char const *printf_helper( std::string const &amp;x )
+    { return x.c_str(); }
+
+template&lt; typename ... Req, typename ... Given &gt;
+int wrap_printf( int (*fn)( Req... ... ), Given ... args ) {
+    return fn( printf_helper( args ) ... );
+}
+
+int main() {
+    wrap_printf( &amp;std::printf, &quot;Hello %s\n&quot;, std::string( &quot;world!&quot; ) );
+    wrap_printf( &amp;std::fprintf, stderr, std::string( &quot;Error %d %d&quot; ), 5, 7 );
+}
+</code></pre>
+<ul>
+<li>Above code is the example of double ellipsis.</li>
+<li><code>wrap_printf</code> takes first argument as the function pointer and passes all further arguments as argument to variadic template expansion</li>
+</ul>
+<h3 id="variadic-using-statements-(since-c%2B%2B17)">Variadic using statements (Since C++17)</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;utility&gt;
+
+template &lt;typename ... B&gt;
+class Merged : B...
+{
+    public:
+    template&lt;typename ... T&gt;
+    Merged(T &amp;&amp; ... t) : B(std::forward&lt;T&gt;(t))...
+    {
+    }
+
+    using B::operator()...;
+};
+
+template &lt;typename ... T&gt;
+Merged(T...) -&gt; Merged&lt;std::decay_t&lt;T&gt;...&gt;;
+
+int main() {
+    const auto l1 = [] { return 4; };
+    const auto l2 = [] (int i) { return i * 10; };
+    const auto l3 = [] (const double d) { return d * 3.2; };
+
+    Merged merged(l1, l2, l3);
+
+    return merged(10.0);
+}
+</code></pre>
+<ul>
+<li>Above code demonstrates the usage of variadic using statements with C++ 17 's class template type deduction and deduction guides.</li>
+</ul>
+<h2 id="template-specialization">Template Specialization</h2>
+<h3 id="function-template-specialization">Function Template Specialization</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+template &lt;typename T&gt;
+T mul(const T&amp; a, const T&amp; b) {
+    return a * b;
+}
+
+template&lt;&gt;
+std::string mul&lt;std::string&gt;(const std::string&amp; a, const std::string&amp; b) {
+    return a + b;
+}
+
+int main()
+{
+    std::cout &lt;&lt; mul(5, 6) &lt;&lt; std::endl;
+    std::cout &lt;&lt; mul(std::string(&quot;5&quot;), std::string(&quot;655&quot;)) &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<ul>
+<li>Above is the example of template Function specialization.</li>
+<li>We are trying to create a specific overload for <code>std::string</code> which concat the string instead of multiplying them.</li>
+</ul>
+<h3 id="class-template-specialization-using-classes">class template specialization using classes</h3>
+<pre><code class="language-cpp">template&lt;typename T&gt;
+class Template {
+public:
+    void SampleFunction(T param){ }
+};
+
+template&lt;&gt;
+class Template&lt;int&gt; {
+public:
+    void SampleFunction(int param){ }
+};
+
+int main()
+{
+    Template&lt;double&gt; d;
+    d.SampleFunction(4.3);
+    Template&lt;int&gt; i;
+    i.SampleFunction(5);
+
+    return 0;
+}
+</code></pre>
+<h3 id="variadic-function-template-specialization">Variadic function template specialization</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+template &lt;typename ... Params&gt;
+void printValues(Params&amp;&amp; ... p) {
+    ((std::cout &lt;&lt; p &lt;&lt; std::endl), ...);
+}
+
+template&lt;&gt;
+void printValues(int&amp;&amp; i, bool&amp;&amp; j) {
+    std::cout &lt;&lt; &quot;Special int bool override &quot; &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; j;
+}
+
+int main(int, char**) {
+    printValues(1, false);
+    printValues(1, &quot;This is Test String&quot;);
+    return 0;
+}
+</code></pre>
+<ul>
+<li>In the above example printValues is a variadic template which has a specialized version for int and bool arguments.</li>
+</ul>
+<h3 id="variadic-class-template-specialization">variadic class template specialization</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+template&lt;typename... Arguments&gt;
+class VariadicTemplate {
+public:
+    void SampleFunction(Arguments... params){
+        ((std::cout &lt;&lt; params &lt;&lt; std::endl), ...);
+    }
+};
+
+template&lt;&gt;
+class VariadicTemplate&lt;double, int, long&gt;{
+public:
+    void SampleFunction(double param1, int param2, long param3){
+        std::cout &lt;&lt; &quot;Specialized function : &quot; &lt;&lt; param1 &lt;&lt; &quot; &quot; &lt;&lt; param2 &lt;&lt; &quot; &quot; &lt;&lt; param3 &lt;&lt; std::endl;
+    }
+};
+
+
+int main()
+{
+    VariadicTemplate&lt;int, double, std::string, char&gt; v1;
+    v1.SampleFunction(5, 3.3, &quot;test&quot;, 'c');
+    
+    VariadicTemplate&lt;double, int, long&gt; v2;
+    v2.SampleFunction(3.3, 5, 2.2L);
+    return 0;
+}
+</code></pre>
+<ul>
+<li>Above is example of VariadicTemplate class specialization.</li>
+<li>We are using fold expression to expand the parameter pack.</li>
+</ul>
 <h1 id="c%2B%2B-techniques">C++ Techniques</h1>
 <h2 id="raii-(resource-acquisition-is-initialization)">RAII (Resource Acquisition Is Initialization)</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+class ResourceGuard {
+    const std::string resource;
+  public:
+    ResourceGuard(const std::string&amp; res) : resource(res) {
+      std::cout &lt;&lt; &quot;Acquire the &quot; &lt;&lt; resource &lt;&lt; &quot;.&quot; &lt;&lt;  std::endl;
+    }
+    ~ResourceGuard() {
+      std::cout &lt;&lt; &quot;Release the &quot;&lt;&lt; resource &lt;&lt; &quot;.&quot; &lt;&lt; std::endl;
+    }
+};
+
+int main() {
+  ResourceGuard resGuard1{&quot;resGuard1&quot;};
+
+  std::cout &lt;&lt; &quot;\nBefore local scope&quot; &lt;&lt; std::endl;
+  {
+    ResourceGuard resGuard2{&quot;resGuard2&quot;};
+  }
+  std::cout &lt;&lt; &quot;After local scope&quot; &lt;&lt; std::endl;
+  
+  std::cout &lt;&lt; &quot;Before try-catch block&quot; &lt;&lt; std::endl;
+  try{
+      ResourceGuard resGuard3{&quot;resGuard3&quot;};
+      throw std::bad_alloc();
+  }   
+  catch (std::bad_alloc&amp; e){
+      std::cout &lt;&lt; e.what();
+  }
+  std::cout &lt;&lt; &quot;After try-catch block&quot; &lt;&lt; std::endl;
+}
+
+Example 2:
+From cppreference.com
+
+std::mutex m;
+
+void bad()
+{
+    m.lock();                    // acquire the mutex
+    f();                         // if f() throws an exception, the mutex is never released
+    if(!everything_ok()) return; // early return, the mutex is never released
+    m.unlock();                  // if bad() reaches this statement, the mutex is released
+}
+
+void good()
+{
+    std::lock_guard&lt;std::mutex&gt; lk(m); // RAII class: mutex acquisition is initialization
+    f();                               // if f() throws an exception, the mutex is released
+    if(!everything_ok()) return;       // early return, the mutex is released
+}
+</code></pre>
 <ul>
 <li><a href="https://en.cppreference.com/w/cpp/language/raii">cppreference RAII</a></li>
+<li>Resource should be acquired in the constructor of an object and released in the destructor of the object.</li>
+<li>Destructor is automatically called if the object goes out of scope.</li>
+</ul>
+<h2 id="crtp-(curiously-recurring-template-pattern)">CRTP (Curiously Recurring Template Pattern)</h2>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+template&lt;typename specific_shape&gt;
+struct Shape {
+    std::string name() { return static_cast&lt;specific_shape*&gt;(this)-&gt;name(); }
+    int area() { return static_cast&lt;specific_shape*&gt;(this)-&gt;area(); }
+};
+struct Rectangle : Shape&lt;Rectangle&gt; {
+    std::string name() { return &quot;Rectangle&quot;; }
+    int area() { return 100; }
+
+};
+struct Circle : Shape&lt;Circle&gt; {
+    std::string name() { return &quot;Circle&quot;; }
+    int area() { return 90; }
+};
+
+template&lt;typename specific_shape&gt;
+void print(Shape&lt;specific_shape&gt; &amp;animal) {
+    
+    std::cout &lt;&lt; animal.name() &lt;&lt; &quot; area is: &quot; &lt;&lt; animal.area() &lt;&lt; std::endl;
+}
+
+int main() {
+    Circle c;
+    print(c);
+
+    Rectangle r;
+    print(r);
+    return 0;
+}
+</code></pre>
+<ul>
+<li>CRTP is static alternative to virtual functions.</li>
+<li>The above code achieves the polymorphic behavior for each shape objects without bearing cost of virtual dispatch mechanism.</li>
+</ul>
+<h2 id="snife">SNIFE</h2>
+<h2 id="rvo-(return-value-optimization)">RVO (Return Value Optimization)</h2>
+<h2 id="nrvo-(named-return-value-optimization)---not-mandatory">NRVO (Named return value optimization) - not mandatory</h2>
+<h2 id="templates">Templates</h2>
+<ul>
+<li>templates defines family of classes or family of functions or family of variables.</li>
+<li><a href="https://en.cppreference.com/w/cpp/language/templates">cppreference template documentation</a></li>
+</ul>
+<h3 id="difference-of-keywords-%E2%80%98typename%E2%80%99-and-%E2%80%98class%E2%80%99-in-template-parameters">difference of keywords ‘typename’ and ‘class’ in template parameters</h3>
+<pre><code class="language-cpp">// dependent types where we have to always use typename
+template&lt;typename param_t&gt;
+class Foo
+{
+    typedef typename param_t::baz sub_t;
+};
+
+// ex2
+typename some_template&lt;T&gt;::some_type
+
+// template templates (however the keywords are interchangeable since C++17)
+template &lt; template &lt; typename, typename &gt; class Container, typename Type &gt;
+
+// explicitly instantiating a templates
+template class Foo&lt;int&gt;;
+
+</code></pre>
+<ul>
+<li>for all basic usages, <code>typename</code> and <code>class</code> keywords are interchangeable.</li>
+<li>Except following cases:</li>
+<li>case of dependent types where we are referencing a nested type that depends on another template parameter.</li>
 </ul>
 <h2 id="template-meta-programming">Template Meta Programming</h2>
 
